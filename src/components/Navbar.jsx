@@ -98,17 +98,19 @@ const Navbar = () => {
 
           {/* Resume button */}
           <motion.a
-            href="https://docs.google.com/document/d/1h8YaThhKmr_zfKNIvr1NVsUSmbKepiEQ_6JARtpV_-o/edit?usp=sharing"
-            onClick={(e) => e.preventDefault()}
+            href={`${import.meta.env.BASE_URL}CV.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-2 px-4 py-1.5 border border-primary text-primary text-sm font-mono rounded
                        hover:bg-primary/10 active:bg-primary/20 transition-colors duration-200
                        flex items-center gap-1.5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.75 }}
+            aria-label="Open CV (PDF) in a new tab"
           >
             <FiFileText size={13} />
-            CV
+            CV (PDF)
           </motion.a>
         </div>
 
