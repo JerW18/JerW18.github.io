@@ -98,7 +98,7 @@ const Navbar = () => {
 
           {/* Resume button */}
           <motion.a
-            href="#"
+            href="https://docs.google.com/document/d/1h8YaThhKmr_zfKNIvr1NVsUSmbKepiEQ_6JARtpV_-o/edit?usp=sharing"
             onClick={(e) => e.preventDefault()}
             className="ml-2 px-4 py-1.5 border border-primary text-primary text-sm font-mono rounded
                        hover:bg-primary/10 active:bg-primary/20 transition-colors duration-200
@@ -108,7 +108,7 @@ const Navbar = () => {
             transition={{ delay: 0.75 }}
           >
             <FiFileText size={13} />
-            Résumé
+            CV
           </motion.a>
         </div>
 
