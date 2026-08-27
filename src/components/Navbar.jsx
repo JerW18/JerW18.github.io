@@ -23,26 +23,54 @@ function scrollTo(id) {
 
 /**
  * Navigation — a beveled sidebar panel on md+, a chrome top bar with a
- * slide-down drawer below it. Active section is tracked by IntersectionObserver
- * and shown as a pressed (sunken) button.
+ * slide-down drawer below it. The section currently under the reading line is
+ * shown as a pressed (sunken) button.
  */
 const Navbar = () => {
   const [menuOpen,      setMenuOpen]      = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
 
-  // Track which section is currently visible
+  // Track which section is currently visible.
   useEffect(() => {
+    // Must stay in document order — matches the section order in pages/Home.jsx.
     const ids = ['hero', ...NAV_LINKS.map((l) => l.href)]
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id) })
-      },
-      // Thin detection band across the viewport's middle. Using a band rather
-      // than a ratio keeps this working for sections taller than the viewport.
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-    )
-    ids.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el) })
-    return () => observer.disconnect()
+    let frame = null
+
+    const update = () => {
+      frame = null
+
+      // The last section whose top has passed this line is the active one.
+      const line = window.innerHeight * 0.35
+      const doc = document.documentElement
+
+      // Trailing sections may be too short to ever reach the line, so pin the
+      // last one once we've hit the bottom of the page.
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+        setActiveSection(ids[ids.length - 1])
+        return
+      }
+
+      let current = ids[0]
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= line) current = id
+      }
+      setActiveSection(current)
+    }
+
+    const onScroll = () => {
+      if (frame === null) frame = requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (frame !== null) cancelAnimationFrame(frame)
+    }
   }, [])
 
   const handleLink = (id) => {
