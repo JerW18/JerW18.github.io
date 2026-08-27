@@ -34,8 +34,8 @@ export const contactItems = [
   },
   {
     icon:  FiMapPin,
-    label: 'Location',
-    value: 'Hong Kong / Manila',
+    label: 'Location & Work Authorization',
+    value: 'Hong Kong (IANG) / Manila (PR)',
     href:  null,
   },
 ]

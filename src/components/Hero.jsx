@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Window from './Window'
 import { socials as SOCIALS } from '../data/socials'
 
-const TITLE = 'AI Engineer & Software Developer'
+const TITLE = 'AI Engineer & Software Developer '
 
 /**
  * Types `text` out one character at a time. Renders the full string
@@ -42,10 +42,7 @@ const Hero = () => {
   const statusBar = (
     <div className="flex items-center justify-between gap-3">
       <span className="flex items-center gap-3">
-        <span className="px-2 py-0.5 bg-chrome-mid shadow-bevel-in">
-          Graduating Oct 2026
-        </span>
-        <span className="hidden sm:inline">Hong Kong</span>
+        
       </span>
 
       <span className="flex items-center gap-3">
@@ -94,13 +91,10 @@ const Hero = () => {
             <div className="divider mb-5" />
 
             <p className="text-ink-muted text-[13px] leading-relaxed max-w-2xl mb-6">
-              Finishing my MSc in Artificial Intelligence at{' '}
-              <strong className="text-ink">HKUST</strong> —{' '}
-              <strong className="text-ink">graduating October 2026</strong> and open to
-              full-time roles. I build intelligent systems end to end, from vision-language model
-              evaluation and fine-tuning to LLM-powered search and computer vision pipelines, and
-              I ship production web applications for real clients, so research ideas land as
-              software people actually use.
+              I build intelligent systems end to end, from vision-language model evaluation and
+              fine-tuning to LLM-powered search and computer vision pipelines, and I ship
+              production web applications for real clients, so research ideas land as software
+              people actually use.
             </p>
 
             <div className="flex flex-wrap gap-3">

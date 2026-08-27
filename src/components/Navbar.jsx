@@ -111,7 +111,7 @@ const Navbar = () => {
               className="w-full text-left px-2 py-2 mb-2 bg-paper shadow-bevel-in
                          font-mono font-bold text-sm text-accent"
             >
-              JW<span className="text-ink">.</span>
+              Welcome to my Portfolio
             </button>
 
             <div className="flex flex-col gap-1">
@@ -146,7 +146,7 @@ const Navbar = () => {
             onClick={() => scrollTo('hero')}
             className="px-2 py-1 bg-paper shadow-bevel-in font-mono font-bold text-sm text-accent"
           >
-            JW<span className="text-ink">.</span>
+            Welcome to my Portfolio
           </button>
 
           <button
