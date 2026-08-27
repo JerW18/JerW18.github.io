@@ -1,0 +1,13 @@
+name = "jw-portfolio-counter"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# Created with: wrangler kv namespace create HITS
+# Paste the returned id below, then run: wrangler deploy
+[[kv_namespaces]]
+binding = "HITS"
+id = "67e4d5b6b2d64d63a109902804f06e88"
+
+[vars]
+# Comma-separated. The first entry is the fallback for unknown origins.
+ALLOWED_ORIGINS = "https://jerw18.github.io,http://localhost:5173,http://localhost:5174"

@@ -3,46 +3,34 @@ import PropTypes from 'prop-types'
 import { motion, useInView } from 'framer-motion'
 import { FiMail } from 'react-icons/fi'
 import { contactItems as CONTACT_ITEMS } from '../data/socials'
+import Window from './Window'
+import SectionHeader from './SectionHeader'
 
 /**
- * A single contact card — clickable if it has a href, otherwise static.
- * card styling lives on motion.div so the box model is always block-level.
+ * A single contact row — label above a sunken value box, like an old form field.
  */
 const ContactCard = ({ item, index, isInView }) => {
   const { icon: Icon, label, value, href } = item
 
-  const content = (
-    <>
-      <div className="p-3 bg-primary/10 border border-primary/20 rounded-lg
-                      group-hover:bg-primary/20 group-hover:border-primary/40 transition-all shrink-0">
-        <Icon className="text-primary" size={19} />
-      </div>
-      <div>
-        <p className="text-gray-500 text-xs mb-0.5">{label}</p>
-        <p className="text-white text-sm font-medium break-all">{value}</p>
-      </div>
-    </>
-  )
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.45, delay: index * 0.1 + 0.2 }}
-      className={`card group flex items-center gap-4 ${href ? 'hover:shadow-glow cursor-pointer' : 'cursor-default'}`}
+      transition={{ duration: 0.25, ease: 'linear', delay: index * 0.04 }}
     >
-      {href ? (
-        <a
-          href={href}
-          target={href.startsWith('mailto') ? '_self' : '_blank'}
-          rel="noopener noreferrer"
-          className="flex items-center gap-4 w-full"
-        >
-          {content}
-        </a>
-      ) : (
-        <>{content}</>
-      )}
+      <p className="flex items-center gap-1.5 font-bold text-[11px] text-ink mb-1">
+        <Icon className="text-accent" size={12} />
+        {label}
+      </p>
+      <p className="field break-all">
+        {href ? (
+          <a href={href} target={href.startsWith('mailto') ? '_self' : '_blank'} rel="noopener noreferrer">
+            {value}
+          </a>
+        ) : (
+          value
+        )}
+      </p>
     </motion.div>
   )
 }
@@ -59,65 +47,46 @@ ContactCard.propTypes = {
 }
 
 /**
- * Contact — brief invitation copy + contact info grid + primary CTA button.
+ * Contact — invitation copy, contact details, and the primary mail CTA.
  */
 const Contact = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="contact" className="py-20 bg-surface-800/25">
+    <section id="contact" className="scroll-mt-16">
       <div ref={ref} className="section-container">
-
-        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
+          transition={{ duration: 0.25, ease: 'linear' }}
         >
-          <p className="section-label">{'// 05. contact'}</p>
-          <h2 className="section-title">Get In Touch</h2>
-          <div className="w-14 h-0.5 bg-primary mt-3 rounded-full" />
+          <Window title="contact" icon={FiMail}>
+            <SectionHeader label="// 06. contact" title="Get In Touch" />
+
+            <div className="max-w-2xl">
+              <p className="text-[13px] text-ink-muted leading-relaxed mb-5">
+                I graduate from HKUST in October 2026 and am actively looking for full-time AI
+                and software engineering roles, alongside research collaborations and interesting
+                projects. Whether you want to discuss AI systems, potential work, or just say
+                hello — my inbox is always open.
+              </p>
+
+              <div className="bg-chrome-mid shadow-bevel p-4 mb-5">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {CONTACT_ITEMS.map((item, i) => (
+                    <ContactCard key={item.label} item={item} index={i} isInView={isInView} />
+                  ))}
+                </div>
+              </div>
+
+              <a href="mailto:jeremywang512@gmail.com" className="btn-3d btn-3d-primary px-6 py-2">
+                <FiMail size={13} />
+                Say Hello
+              </a>
+            </div>
+          </Window>
         </motion.div>
-
-        <div className="max-w-2xl">
-          {/* Intro copy */}
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400 text-base leading-relaxed mb-10"
-          >
-            I'm currently open to new opportunities, research collaborations, and interesting
-            projects. Whether you want to discuss AI systems, potential work, or just say
-            hello — my inbox is always open.
-          </motion.p>
-
-          {/* Contact cards */}
-          <div className="grid sm:grid-cols-2 gap-4 mb-10">
-            {CONTACT_ITEMS.map((item, i) => (
-              <ContactCard key={item.label} item={item} index={i} isInView={isInView} />
-            ))}
-          </div>
-
-          {/* Primary CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <a
-              href="mailto:jeremywang512@gmail.com"
-              className="inline-flex items-center gap-2 px-7 py-3.5
-                         bg-primary text-surface-900 font-semibold text-sm rounded-lg
-                         hover:bg-emerald-500 active:scale-95 transition-all duration-200"
-            >
-              <FiMail size={16} />
-              Say Hello
-            </a>
-          </motion.div>
-        </div>
       </div>
     </section>
   )

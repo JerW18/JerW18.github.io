@@ -10,58 +10,129 @@
   }
 
   body {
-    @apply bg-surface-900 text-white font-sans antialiased;
+    @apply bg-chrome text-ink font-sans text-[13px] leading-normal;
+    /* Faint diagonal hatch — the era's tiled desktop texture, kept subtle. */
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.028) 0px,
+      rgba(0, 0, 0, 0.028) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    background-attachment: fixed;
   }
 
-  /* Custom scrollbar — slim sky-blue track */
+  /* Period-correct link treatment: blue, underlined, purple once visited. */
+  a {
+    @apply text-link underline underline-offset-2;
+  }
+  a:visited {
+    @apply text-link-visited;
+  }
+
+  /* Chunky beveled scrollbar */
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 16px;
+    height: 16px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-surface-800;
+    @apply bg-chrome-mid;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary rounded-full;
+    @apply bg-chrome shadow-bevel;
+  }
+  ::-webkit-scrollbar-corner {
+    @apply bg-chrome-mid;
   }
 
-  /* Better selection highlight */
   ::selection {
-    @apply bg-primary/30 text-white;
+    @apply bg-title-from text-white;
+  }
+
+  /* Visible focus ring that suits the theme */
+  :focus-visible {
+    outline: 2px dotted theme('colors.accent');
+    outline-offset: 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-/* ── Component layer: reusable class groups ── */
+/* ── Component layer: the window-chrome vocabulary ── */
 @layer components {
-  /* Consistent section wrapper */
-  .section-container {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+  /* Outer window frame: raised bevel + hard drop shadow */
+  .window {
+    @apply bg-chrome shadow-window border border-chrome-darker p-[3px];
   }
 
-  /* Section heading pair */
+  /* Gradient title bar with the decorative control glyphs */
+  .titlebar {
+    @apply flex items-center gap-2 px-2 py-1
+           bg-gradient-to-r from-title-from to-title-to
+           text-white font-sans font-bold text-[11px] tracking-wide;
+  }
+
+  /* White content area inside a window */
+  .window-body {
+    @apply bg-paper border border-chrome-dark p-5 sm:p-6;
+  }
+
+  /* Raised 3D push button */
+  .btn-3d {
+    @apply inline-flex items-center justify-center gap-1.5
+           bg-chrome shadow-bevel text-ink font-sans font-bold text-[11px]
+           px-4 py-1.5 no-underline
+           active:shadow-bevel-in active:translate-y-px
+           transition-none;
+  }
+  .btn-3d:visited {
+    @apply text-ink;
+  }
+
+  /* Emphasised variant for primary calls to action */
+  .btn-3d-primary {
+    @apply bg-gradient-to-b from-title-to to-title-from text-white;
+  }
+  .btn-3d-primary:visited {
+    @apply text-white;
+  }
+
+  /* Sunken monospace chip for tech / metadata */
+  .badge {
+    @apply inline-block bg-chrome-mid shadow-bevel-in
+           px-2 py-0.5 font-mono text-[11px] text-ink-muted whitespace-nowrap;
+  }
+
+  /* Sunken read-only value box — the era's disabled input */
+  .field {
+    @apply bg-paper shadow-bevel-in px-2 py-1 text-[12px] text-ink;
+  }
+
+  /* Section wrapper — panels supply their own separation, so padding is tighter */
+  .section-container {
+    @apply max-w-5xl mx-auto px-3 sm:px-5 py-6;
+  }
+
   .section-label {
-    @apply font-mono text-primary text-sm mb-2 tracking-wide;
+    @apply font-mono text-[11px] text-accent uppercase tracking-wider;
   }
   .section-title {
-    @apply text-3xl sm:text-4xl font-bold text-white;
+    @apply font-sans font-bold text-lg sm:text-xl text-ink;
   }
 
-  /* Glass-style card */
-  .card {
-    @apply bg-surface-700 border border-surface-600 rounded-xl p-6
-           hover:border-primary/40 hover:shadow-glow
-           transition-all duration-300;
-  }
-
-  /* Monospace tech badge */
-  .badge {
-    @apply px-3 py-1.5 bg-surface-600 border border-surface-500 rounded-lg
-           text-xs font-mono text-gray-300
-           hover:border-primary/50 hover:text-primary
-           transition-all duration-200 cursor-default;
-  }
-
-  /* Gradient text utility */
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-emerald-300 bg-clip-text text-transparent;
+  /* Grooved horizontal rule */
+  .divider {
+    @apply h-0 border-t border-chrome-dark border-b border-white;
   }
 }

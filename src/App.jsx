@@ -5,11 +5,13 @@ import Home from './pages/Home'
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-surface-900">
+      <div className="min-h-screen bg-chrome md:flex md:items-start">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
+        <div className="flex-1 min-w-0 pt-14 md:pt-0">
+          <Routes>
+            <Route path="/" element={<Home />} />
           </Routes>
+        </div>
       </div>
     </Router>
   )
