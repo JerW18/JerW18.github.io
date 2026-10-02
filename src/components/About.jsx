@@ -40,10 +40,9 @@ const About = () => {
               <div className="lg:col-span-3 space-y-3 text-[13px] leading-relaxed text-ink-muted">
                 <p>
                   Hi — I'm <strong className="text-ink">Yuanpeng (Jeremy) Wang</strong>, an AI
-                  Engineer and Software Developer finishing my{' '}
+                  Engineer and Software Developer with a{' '}
                   <strong className="text-ink">MSc in Artificial Intelligence</strong> at the Hong
-                  Kong University of Science and Technology, where I{' '}
-                  <strong className="text-ink">graduate in October 2026</strong>.
+                  Kong University of Science and Technology.
                 </p>
                 <p>
                   I graduated <strong className="text-ink">Cum Laude</strong> with a BS in Computer

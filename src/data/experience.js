@@ -21,7 +21,7 @@ export const experiences = [
     id: 1,
     role: 'Freelance Web Developer',
     company: null,
-    period: 'April 2024 - Present',
+    period: 'April 2024 - June 2026',
     location: 'Manila, Philippines',
     description: [
       'Created end-to-end Shopify and WordPress websites for clients across retail, fashion, and academic sectors, collectively serving 800+ users monthly',
@@ -106,11 +106,10 @@ export const education = [
     major: null,
     school: 'Hong Kong University of Science and Technology',
     shortName: 'HKUST',
-    period: 'Sept 2025 - Oct 2026',
+    period: 'Sept 2025 - July 2026',
     location: 'Hong Kong',
     honors: null,
     current: true,
-    status: 'Graduating Oct 2026',
   },
   {
     id: 2,
