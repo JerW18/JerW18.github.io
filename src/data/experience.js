@@ -19,7 +19,7 @@ export const experiences = [
   },
   {
     id: 1,
-    role: 'Freelance Web Developer',
+    role: 'Freelance Software Developer',
     company: null,
     period: 'April 2024 - June 2026',
     location: 'Manila, Philippines',
