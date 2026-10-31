@@ -91,7 +91,7 @@ export const experiences = [
       'Utilised Git and GitHub for version control, team collaboration, and repository management',
       'Worked with 2-3 staffers to design and launch two interactive web specials',
     ],
-    tech: ['HTML', 'CSS', 'JavaScript', 'WordPress', 'Git', 'GitHub'],
+    tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'WordPress', 'Git', 'GitHub'],
     links: [
       { label: 'brothers.thelasallian.com', url: 'https://brothers.thelasallian.com/' },
       { label: 'se2023.thelasallian.com',   url: 'https://se2023.thelasallian.com/' },
