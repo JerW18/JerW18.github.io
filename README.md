@@ -1,6 +1,6 @@
-# Jeremy Wang — AI Engineer Portfolio
+# Jeremy Wang — Portfolio
 
-Personal portfolio website for **Yuanpeng (Jeremy) Wang** — AI Engineer & Software Developer.
+Personal portfolio website for **Yuanpeng (Jeremy) Wang** — Software Developer.
 
 **Live URL:** `https://jerw18.github.io/`
 
